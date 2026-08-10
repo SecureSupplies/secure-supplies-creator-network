@@ -1,39 +1,63 @@
 # Secure Supplies Creator Partner Network
 
-**Live:** https://delicate-tarsier-7e742c.netlify.app
+**Portal:** Creator Command Center · **Tagline:** Learn. Build. Publish. Refer. Earn.
+**Business:** Donatelli LLC d/b/a Secure Supplies Group · **Founder:** Daniel Donatelli
+**Existing Patreon:** https://www.patreon.com/cw/securesupplies
 
-**Business:** Donatelli LLC d/b/a Secure Supplies Group · **Owner:** Daniel Donatelli
+A production-grade creator-partner platform: campaign marketplace, asset vault, remix studio,
+referral tracking, Patreon attribution, versioned commission engine, content rewards,
+compliance workflow, and payout administration.
 
-**Patreon:** https://www.patreon.com/cw/securesupplies
+## Program principles (enforced in code)
 
-A production creator-affiliate platform. Creators apply, get personal tracked links and Patreon promo codes, remix licensed assets, share on social platforms, and earn retail commissions on verified Patreon memberships and product sales. **No recruitment payments exist anywhere in this system** — retail sales only, enforced in code (FTC-compliant by design).
+- **No commission for recruiting.** The engine has no recruitment payment path; the Team Lead
+  override is feature-flagged OFF, one level maximum, six months maximum, and pays only on
+  verified retail Net Collected Revenue.
+- **No self-referral commissions.** Flagged in attribution, zeroed in the engine.
+- **All money is integer minor units.** Floating-point money throws (`MoneyError`).
+- **Refunds and chargebacks reverse commissions**, with partial-refund proration and
+  negative-balance carry-forward.
+- **Earnings are never guaranteed** — copy across the site says so.
+- **Every post carries the required affiliate disclosure** — submission requires confirmation,
+  and captions are scanned for prohibited claims.
 
-## Stack
-
-- **Frontend:** Vite + React SPA (public site, Creator portal, Admin portal)
-- **Serverless:** 25+ Netlify Functions (tracking, commissions, Patreon OAuth/webhooks, payouts) + 2 scheduled jobs (nightly member sync, commission finalization)
-- **Database/Auth:** Supabase Postgres — 31 tables, 57 RLS policies, magic-link email login (no passwords)
-- **Sales sources:** Patreon memberships (API v2 webhook) · Patreon Shop (CSV import + promo-code attribution — Patreon has no Shop API)
-
-## Commission model
-
-25% first month · 15% renewals (2–12) · 20% annual · 25% products · 30% launch cap — computed on Net Collected Revenue (integer minor units; refunds and chargebacks auto-reverse). Content rewards: remix $5 + $1.25/1k verified views (cap $150); original $20 + $3/1k (cap $400). $50 payout minimum, monthly batches, 30–45 day holds (up to 90 iOS).
-
-## Deployment
-
-- Netlify builds from this repo (main); settings in netlify.toml (build npm run build, publish dist, functions netlify/functions).
-- All secrets live in Netlify environment variables — **never** in this repo. .env.example documents required keys with empty values.
-- Database schema: supabase/migrations/ (3 files, run in order) + supabase/seed.sql.
-- Full guides in docs/: deployment, Patreon setup, commission engine, admin & creator guides, security, testing.
-
-## Development
+## Quick start
 
 ```bash
 npm install
-npm run dev      # local dev (demo mode, mock data)
-npm run verify   # typecheck + lint + 38 unit tests + build
+npm run dev        # local dev server (demo mode, mock data)
+npm run test       # unit tests (commission engine, rewards, attribution)
+npm run build      # type-check + production build
+npm run verify     # typecheck + lint + tests + build
+npm run test:e2e   # smoke test against a built preview (requires Chromium)
 ```
 
-## License
+## Structure
 
-Proprietary. © Donatelli LLC d/b/a Secure Supplies Group. All rights reserved. No use, copying, or distribution without written permission.
+```
+src/lib/            Money model, commission engine, attribution, compliance (unit-tested)
+src/pages/          Public site, Creator portal (13 routes), Admin portal (18 routes)
+src/demo/           Deterministic FICTIONAL demo dataset + role switcher
+netlify/functions/  21 serverless functions (Patreon, tracking, commissions, payouts)
+netlify/lib/        Server-only helpers (service-role client, Patreon HMAC, OAuth state)
+supabase/migrations 3 migrations: schema, commerce, RLS
+supabase/seed.sql   Seed offers/campaigns/rules
+templates/          Blank CSV import templates
+docs/               Deployment, Patreon setup, commission engine, guides, policies
+```
+
+## Demo vs production
+
+`DEMO_MODE=true` (default) serves the full UI with fictional data and mocks every external
+side effect (payments, publishing, rendering, webhooks) with explicit "demo" responses.
+Production requires Supabase + Patreon configuration — see `docs/DEPLOY_NETLIFY.md` and
+`docs/PATREON_SETUP.md`.
+
+**Patreon Shop limitation:** Patreon's public API v2 has no Shop-order endpoint or webhook.
+Shop attribution is implemented via creator promo codes + CSV sales imports
+(`docs/PATREON_SALES_IMPORT.md`). This system does not invent unsupported APIs.
+
+## License & legal
+
+Policy pages and agreement templates are drafts for counsel review — not legal advice.
+© 2026 Daniel Donatelli / Donatelli LLC d/b/a Secure Supplies Group. All rights reserved.

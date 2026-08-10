@@ -1,0 +1,125 @@
+@import 'tailwindcss';
+
+/* ============================================================
+   Secure Supplies Creator Partner Network — Design tokens
+   All brand colors are CSS variables so they can be replaced.
+   ============================================================ */
+:root {
+  --ss-navy: #081a2c;
+  --ss-steel: #1e3a4c;
+  --ss-cyan: #1bc6d9;
+  --ss-green: #46d27a;
+  --ss-offwhite: #f7fafc;
+  --ss-amber: #f4b740;
+  --ss-red: #dc4c4c;
+
+  --ss-navy-800: #0c2338;
+  --ss-navy-700: #102c44;
+  --ss-steel-300: #7a95a6;
+  --ss-steel-200: #a9bcc8;
+  --ss-line: rgba(27, 198, 217, 0.14);
+  --ss-line-strong: rgba(169, 188, 200, 0.22);
+}
+
+@theme {
+  --color-navy: var(--ss-navy);
+  --color-navy-800: var(--ss-navy-800);
+  --color-navy-700: var(--ss-navy-700);
+  --color-steel: var(--ss-steel);
+  --color-steel-300: var(--ss-steel-300);
+  --color-steel-200: var(--ss-steel-200);
+  --color-cyan: var(--ss-cyan);
+  --color-green: var(--ss-green);
+  --color-offwhite: var(--ss-offwhite);
+  --color-amber: var(--ss-amber);
+  --color-red: var(--ss-red);
+  --font-display: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', monospace;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  background: var(--ss-navy);
+  color: var(--ss-offwhite);
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Industrial grid backdrop */
+.ss-grid-bg {
+  background-image:
+    linear-gradient(rgba(27, 198, 217, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(27, 198, 217, 0.045) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+.ss-card {
+  background: linear-gradient(180deg, rgba(30, 58, 76, 0.55), rgba(12, 35, 56, 0.75));
+  border: 1px solid var(--ss-line);
+  border-radius: 0.75rem;
+}
+
+.ss-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  border-radius: 9999px;
+  padding: 0.15rem 0.65rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--ss-cyan);
+  outline-offset: 2px;
+}
+
+/* Accessible skip link */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--ss-cyan);
+  color: var(--ss-navy);
+  padding: 0.5rem 1rem;
+  z-index: 100;
+  font-weight: 700;
+}
+.skip-link:focus {
+  left: 0.5rem;
+  top: 0.5rem;
+}
+
+table.ss-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+table.ss-table th {
+  text-align: left;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ss-steel-300);
+  padding: 0.55rem 0.75rem;
+  border-bottom: 1px solid var(--ss-line-strong);
+  white-space: nowrap;
+}
+table.ss-table td {
+  padding: 0.55rem 0.75rem;
+  border-bottom: 1px solid var(--ss-line);
+  vertical-align: top;
+}
+table.ss-table tbody tr:hover {
+  background: rgba(27, 198, 217, 0.04);
+}

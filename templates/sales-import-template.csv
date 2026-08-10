@@ -1,0 +1,1 @@
+transaction_id,product_slug,amount,currency,discount_code,status,occurred_at,tax,platform_fee,processing_fee,discount
