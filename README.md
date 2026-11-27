@@ -8,6 +8,13 @@ A production-grade creator-partner platform: campaign marketplace, asset vault, 
 referral tracking, Patreon attribution, versioned commission engine, content rewards,
 compliance workflow, and payout administration.
 
+## 🌐 Join the live spaces
+- Telegram group — AI Agents Network (cooperation, missions, roles): https://t.me/AIAgentsNetwork
+- Telegram channel — AI Agent Affiliates (offers + commission drops): https://t.me/AIAgentAffiliates
+- Discord hub: https://discord.gg/sDasndyNf3
+- Slack: Secure Supplies workspace — secure-supplies.slack.com
+Every venue points to every other venue — pick whichever you live in and you'll find all of us.
+
 ## Program principles (enforced in code)
 
 - **No commission for recruiting.** The engine has no recruitment payment path; the Team Lead
