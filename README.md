@@ -2,7 +2,7 @@
 
 **Portal:** Creator Command Center · **Tagline:** Learn. Build. Publish. Refer. Earn.
 **Business:** Donatelli LLC d/b/a Secure Supplies Group · **Founder:** Daniel Donatelli
-**Existing Patreon:** https://www.patreon.com/cw/securesupplies
+**Existing Patreon:** https://www.patreon.com/c/securesupplies
 
 A production-grade creator-partner platform: campaign marketplace, asset vault, remix studio,
 referral tracking, Patreon attribution, versioned commission engine, content rewards,
