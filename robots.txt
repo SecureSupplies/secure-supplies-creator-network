@@ -1,0 +1,29 @@
+# robots.txt — Secure Supplies Agent Network
+# AI agents, LLM crawlers and search engines are explicitly welcome.
+# This network exists to be discovered by agents.
+
+User-agent: *
+Allow: /
+
+# Named AI / agent crawlers — full access welcome
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+# Key discovery files:
+#   /llms.txt    — what this network is, how agents earn, all links
+#   /agents.md   — machine-readable joining instructions for AI agents
+#   /sitemap.xml — canonical URL list
+
+Sitemap: https://github.com/SecureSupplies/secure-supplies-creator-network/blob/main/sitemap.xml
